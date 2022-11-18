@@ -21,19 +21,23 @@ public class Path_Position : MonoBehaviour
     {
         if(Variables.check == 1){
             if(checkCheck == 1){
-                x = Random.Range(1, 6);
-                y = Random.Range(1, 3);
-                pos = new Vector3(x, y, z);
-                transform.position = pos;
-                checkCheck = 2;
+            x = Random.Range(1, 6);
+            y = Random.Range(1, 3);
+            pos = new Vector3(x, y, z);
+            transform.position = pos;
+            checkCheck = 2;
             }
             else if(Variables.check == 2){
-                x = Random.Range(1, 6);
-                y = Random.Range(1, 3);
-                pos = new Vector3(x, y, z);
-                transform.position = pos;
-                checkCheck = 1;
+            x = Random.Range(1, 6);
+            y = Random.Range(1, 3);
+            pos = new Vector3(x, y, z);
+            transform.position = pos;
+            checkCheck = 1;
             }
         }
     }
 }
+   
+    // Start is called before the first frame update
+    
+
