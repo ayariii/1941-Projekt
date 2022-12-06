@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class Enemy_Health : MonoBehaviour
 {
-    [SerializeField] int health = 5;
-    public void Damage(){
+   
+    
+    void Start()
+    {
+        StartCoroutine(routine: OnCollisionEnter());
+    }
+    [SerializeField] int health = 3;
+    private void Damage(){
+        
         health--;
         if(health <= 0){
             Destroy(this.gameObject);
         }
-    }
-    
-    void Start()
-    {
-        
+        StartCoroutine(OnCollisionEnter());
     }
 
-    private void OnCollisionEnter(Collision other) {
+    IEnumerator OnCollisionEnter(Collision other) {
         if(other.body.CompareTag("Cube")){
            Damage();
+           yield return new WaitForSeconds (3);
         }
     }
 
@@ -28,4 +32,5 @@ public class Enemy_Health : MonoBehaviour
     {
         
     }
+
 }
