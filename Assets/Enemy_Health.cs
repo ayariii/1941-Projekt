@@ -8,22 +8,32 @@ public class Enemy_Health : MonoBehaviour
     
     void Start()
     {
-        StartCoroutine(routine: OnCollisionEnter());
     }
+    private bool isInvincible = false;
+    
+    private IEnumerator Invincible()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(3);
+        isInvincible = false;
+    }
+
     [SerializeField] int health = 3;
     private void Damage(){
-        
+        if(isInvincible) return;
         health--;
         if(health <= 0){
             Destroy(this.gameObject);
         }
-        StartCoroutine(OnCollisionEnter());
+        StartCoroutine(Invincible());
     }
 
-    IEnumerator OnCollisionEnter(Collision other) {
+    private void OnCollisionEnter(Collision other) {
         if(other.body.CompareTag("Cube")){
            Damage();
-           yield return new WaitForSeconds (3);
+           if(!isInvincible){
+            StartCoroutine(Invincible());
+           }
         }
     }
 
